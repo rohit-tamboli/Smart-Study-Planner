@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Smart Study Planner</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <h1>Smart Study Planner</h1>
+        <p class="tagline">Organize, Track, and Achieve Your Study Goals</p>
+    </header>
+
+    <main class="container">
+        <!-- Left Column -->
+        <div class="left-column">
+
+            <div class="top-controls">
+                <button id="newTaskBtn">Add Task / Goal</button>
+            </div>
+
+            <section class="card form-card hidden" aria-labelledby="addTaskTitle" id="formCard">
+                <h2 id="addTaskTitle">New Task / Goal</h2>
+                <form id="taskForm" autocomplete="off">
+                    <div class="row">
+                        <label>
+                            Title
+                            <input type="text" id="title" required placeholder="e.g. Maths - Chapter 3" />
+                        </label>
+                        <label>
+                            Due Date
+                            <input type="date" id="dueDate" />
+                        </label>
+                    </div>
+
+                    <div class="row">
+                        <label>
+                            Estimated Hours
+                            <input type="number" id="hours" min="0" step="0.5" placeholder="2" />
+                        </label>
+                        <label>
+                            Reminder (date & time)
+                            <input type="datetime-local" id="reminder" />
+                        </label>
+                    </div>
+
+                    <label>
+                        Notes / Description
+                        <textarea id="desc" rows="2" placeholder="Short notes..."></textarea>
+                    </label>
+
+                    <div class="form-actions">
+                        <button type="submit" id="saveBtn">Save Task</button>
+                        <button type="button" id="clearBtn" class="muted">Clear Form</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="card timeline-card" aria-labelledby="timelineTitle">
+                <h2 id="timelineTitle">Visual Timeline</h2>
+                <div id="timeline" class="timeline"></div>
+                <div class="overall-progress">
+                    <label>Overall Progress</label>
+                    <div class="progress-wrap">
+                        <div id="overallBar" class="progress-bar"></div>
+                    </div>
+                    <small id="overallPct">0% complete</small>
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Column -->
+        <section class="card list-card" aria-labelledby="tasksTitle">
+            <h2 id="tasksTitle">Tasks & Goals</h2>
+            <div class="controls">
+                <select id="filter">
+                    <option value="all">All</option>
+                    <option value="active">Active</option>
+                    <option value="completed">Completed</option>
+                    <option value="today">Due Today</option>
+                </select>
+                <input id="search" placeholder="Search title..." />
+            </div>
+
+            <ul id="taskList" class="task-list" aria-live="polite"></ul>
+
+            <div class="list-footer">
+                <span id="counts"></span>
+                <button id="clearAll" class="danger">Clear All</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <small>Made with ❤️ — Local save (no cloud)</small>
+    </footer>
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
